@@ -1,0 +1,43 @@
+*{
+    border: black 1px solid;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 0;
+    height:100vh;
+}
+
+#main{
+    min-height: 0;
+    height: 70%;
+    display: grid;  
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: aquamarine;
+}
+
+.compartment{
+    background-color: blue;
+}
+
+#boardArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#board{
+    background-color: orange;
+    height: 70%;
+    aspect-ratio: 1/1;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+
+.square{
+    background-color: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
