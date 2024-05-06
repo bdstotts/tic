@@ -9,11 +9,31 @@
 </head>
 <body>
     <div id="main">
-        <div class="compartment" id="player1"></div>
-        <div class="compartment" id="boardArea">
-            <div id="board"></div>
+        <div class="compartment player" id="player1">
+            <div class="playerHeadline">Player 1</div>
+            <div class="playerInfo">
+                <label for="name1">Name:</label>
+                <input type="text" id="name1" name="name">
+                <div class="symbolLabel">Color:</div>
+                <div class="colorDiv">
+                    <input type="color" id="picker1" class="pickers" value="#0000ff">
+                </div>
+                </div>
         </div>
-        <div class="compartment" id="player2"></div>
+    <div class="compartment" id="boardArea">
+            <div id="board"></div>
+    </div>
+    <div class="compartment player" id="player2">
+            <div class="playerHeadline">Player 2</div>
+            <div class="playerInfo">
+                <label for="name2">Name:</label>
+                <input type="text" id="name2" name="name">
+                <div class="symbolLabel">Color:</div>
+                <div class="colorDiv">
+                    <input type="color" id="picker2" class="pickers" value="#ffa500">
+                </div>
+            </div>
+        </div>
     </div>
     
 </body>
