@@ -6,6 +6,14 @@ function game(){
     let turn = 1;
 
     function createBoard(){
+
+        boardArea=document.getElementById("boardArea")
+
+        board = document.createElement("div")
+        board.setAttribute("id", "board")
+        boardArea.appendChild(board)
+
+
        squares = [];
        for(i=0;i<9;i++){
         function createSquare(){
@@ -22,7 +30,9 @@ function game(){
 
     //const pickers = document.querySelectorAll("pickers")
    const player1Picker = document.getElementById("picker1");
+   player1Picker.disabled = false
     const player2Picker = document.getElementById("picker2");
+    player2Picker.disabled = false
 
 
     player1Picker.addEventListener("change", pickColor1)
@@ -32,13 +42,11 @@ function game(){
     function pickColor1(){
         console.log("Player 1 color changed")
         player1Color = this.value;
-        //this.disabled = true;
     }
 
     function pickColor2(){
         console.log("Player 2 color changed")
         player2Color = this.value;
-        //this.disabled = true;
     }
 
 
@@ -69,6 +77,12 @@ function game(){
                  && 
                  (squares[x,y,z].classList.contains("clicked")))
                      {
+                        squares[x].style.borderColor = "red";
+                        squares[y].style.borderColor = "red";
+                        squares[z].style.borderColor = "red";
+                        squares[x].style.borderWidth = "5px";
+                        squares[y].style.borderWidth = "5px";
+                        squares[z].style.borderWidth = "5px";
                          alert("Player Wins")}
                  }
                  win(0,1,2)
@@ -79,15 +93,30 @@ function game(){
                  win(2,5,8)
                  win(0,4,8)
                  win(2,4,6)      
+                 console.log(turn)
+
+                 if(turn>1){
+                    player1Picker.disabled = true;
+                }
+                else{player1Picker.enabled = true}
+            
+                if(turn>2){
+                    player2Picker.disabled = true;
+                }
+                else{player2Picker.enabled = true}
 
             }
 
-            if(turn>1){
-                player1Picker.disabled = true;
-            }
-        
-            if(turn>2){
-                player2Picker.disabled = true;
+            
+
+            if(turn === 10){
+                alert("Nobody wins..")
+                board.remove();
+               newBoard = document.createElement("div")
+               newBoard.setAttribute("id", "board")
+
+
+                game();
             }
         }
            
