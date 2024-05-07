@@ -1,18 +1,20 @@
 *{
     border: black 1px solid;
     box-sizing: border-box;
+    margin:0px;
 }
 
 body{
     min-height: 0;
-    height:100vh;
+    height:100%;
+    margin:0px;
 }
 
 #main{
     min-height: 0;
     height: 70%;
     display: grid;  
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     background-color: aquamarine;
 }
 
@@ -26,7 +28,7 @@ body{
 
 .player{
     display: grid;
-    grid-template-rows: 5fr 1fr;
+    grid-template-rows: 3fr 1fr;
     background-color: yellow;
 }
 
@@ -39,7 +41,7 @@ body{
 
 .playerInfo{
     display: grid;
-    grid-template-rows: repeat(2,3em);
+    grid-template-rows: repeat(3,3em);
     grid-template-columns: repeat(2,1fr);
 }
 
@@ -67,7 +69,7 @@ body{
 }
 
 .square:hover{
-    background-color: rgb(165, 119, 165);
+    background-color: rgb(194, 252, 189);
 }
 
 .clicked:hover{
@@ -88,9 +90,22 @@ label{
     align-items: center;
 }
 
-.symbolLabel{
+.symbolLabel,.scoreBox, .scoreLabel{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+button{
+    height: 2.5em;
+    width: 60px;
+}
+
+.bottom{
+    width: 100%;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
