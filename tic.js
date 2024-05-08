@@ -1,6 +1,11 @@
 var player1Score = 0
 var player2Score = 0
 
+player1Color = "#0000ff"
+color1Box.style.backgroundColor = player1Color
+player2Color = "#ffa500"
+color2Box.style.backgroundColor = player2Color
+
 function game(){
 
     const player1ScoreBox = document.getElementById("player1ScoreBox");
@@ -9,9 +14,10 @@ function game(){
     player1ScoreBox.innerHTML = player1Score;
     player2ScoreBox.innerHTML = player2Score;
     
+    const color1Box = document.getElementById("color1Box")
+    const color2Box = document.getElementById("color2Box")
 
-    player1Color = "#0000ff"
-    player2Color = "#ffa500"
+  
 
     let turn = 1;
 
@@ -38,7 +44,6 @@ function game(){
     createBoard();
 
 
-    //const pickers = document.querySelectorAll("pickers")
    const player1Picker = document.getElementById("picker1");
    player1Picker.disabled = false
     const player2Picker = document.getElementById("picker2");
@@ -50,13 +55,14 @@ function game(){
     
 
     function pickColor1(){
-        //console.log("Player 1 color changed")
         player1Color = this.value;
+        color1Box.style.backgroundColor = this.value
+        console.log(color1Box.style.backgroundColor)
     }
 
     function pickColor2(){
-       // console.log("Player 2 color changed")
         player2Color = this.value;
+        color2Box.style.backgroundColor = this.value
     }
 
 
@@ -68,7 +74,6 @@ function game(){
 
          function placePiece(){
              if(!element.classList.contains("clicked")){
-                 //console.log("piece has been placed");
                  if(turn%2 ===1){
                      element.style.backgroundColor = player1Color;
                  }
@@ -77,15 +82,17 @@ function game(){
                  }
                  turn+=1;
                  element.classList.add("clicked")
-                 console.log(turn)
-                 console.log(turn%2)
-                
+
                  function win(x,y,z){
+
                       if((squares[x].style.backgroundColor === squares[y].style.backgroundColor)
-                 &&
-                 (squares[x].style.backgroundColor === squares[z].style.backgroundColor)
-                 && 
-                 (squares[x,y,z].classList.contains("clicked")))
+                         &&
+                         (squares[x].style.backgroundColor === squares[z].style.backgroundColor)
+                         && 
+                         ((squares[x,y,z].style.backgroundColor === color1Box.style.backgroundColor)
+                        ||
+                         (squares[x,y,z].style.backgroundColor === color2Box.style.backgroundColor))
+                        )
                      {
                         squares[x].style.borderColor = "red";
                         squares[y].style.borderColor = "red";
@@ -94,25 +101,27 @@ function game(){
                         squares[y].style.borderWidth = "5px";
                         squares[z].style.borderWidth = "5px";
                          if(turn%2===0){
-                            alert("Player 1 wins")
+                            //alert("Player 1 wins")
                             player1Score +=1
                             player1ScoreBox.innerHTML = player1Score;
-                            console.log("Player 1 score is " + player1Score)
+                            console.log("Player 1 score is " + player1Score + squares[x,y,z].style.backgroundColor)
                          }
                          else{
-                            alert("Player 2 wins")
+                            //alert("Player 2 wins")
                             player2Score+=1
                             player2ScoreBox.innerHTML = player2Score;
                             console.log("Player 2 score is " + player2Score)
                          }
                         
-                        /* squares.forEach(element => {
+                         squares.forEach(element => {
                             element.classList.add("clicked")
                             
-                         });*/
+                         });
                         
                         
                     }
+
+                    
                  }
                  win(0,1,2)
                  win(3,4,5)
@@ -122,17 +131,14 @@ function game(){
                  win(2,5,8)
                  win(0,4,8)
                  win(2,4,6)      
-                 //console.log(turn)
-
+                 
                  if(turn>1){
                     player1Picker.disabled = true;
                 }
-                else{player1Picker.enabled = true}
-            
+                            
                 if(turn>2){
                     player2Picker.disabled = true;
                 }
-                else{player2Picker.enabled = true}
 
             }
 
